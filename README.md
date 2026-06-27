@@ -2,16 +2,16 @@
 
 ## Overview
 
-This project is developed for the India Runs AI Hackathon – Track 1.
+This project was developed for the **India Runs AI Hackathon 2026 – Intelligent Candidate Discovery Challenge**.
 
-The system intelligently ranks candidates by analyzing multiple signals instead of relying only on keyword matching. It evaluates candidate profiles using job description relevance, skills, experience, career history, and behavioral signals to generate a reliable ranked shortlist.
+The system intelligently ranks candidates by evaluating multiple factors instead of relying only on keyword matching. It combines job description relevance, candidate skills, professional experience, career history, and behavioral signals to generate an accurate ranked candidate list.
 
 ---
 
 ## Features
 
 * Multi-factor candidate ranking
-* Job Description keyword matching
+* Job Description (JD) keyword matching
 * Skill-based scoring
 * Experience evaluation
 * Career history analysis
@@ -24,14 +24,16 @@ The system intelligently ranks candidates by analyzing multiple signals instead 
 
 ## Project Structure
 
-```
+```text
 IndiaRunsAI/
-
-│── data/
-│   ├── jd.txt
-│   └── candidates.jsonl
 │
-│── src/
+├── data/
+│   ├── jd.txt
+│   ├── candidate_schema.json
+│   ├── sample_candidates.json
+│   └── sample_submission.csv
+│
+├── src/
 │   ├── main.py
 │   ├── load_data.py
 │   ├── score_skills.py
@@ -43,8 +45,12 @@ IndiaRunsAI/
 │   ├── rank_candidates.py
 │   └── show_candidate.py
 │
-├── requirements.txt
+├── output/
+│   └── submission.csv
+│
 ├── submission.csv
+├── top5_candidates.csv
+├── requirements.txt
 └── README.md
 ```
 
@@ -52,33 +58,33 @@ IndiaRunsAI/
 
 ## Ranking Pipeline
 
-The ranking system evaluates candidates using:
+The ranking algorithm evaluates each candidate using:
 
 * JD Fit Score
 * Skill Match Score
 * Experience Score
-* Career Score
+* Career History Score
 * Behavioral Score
 
-Each score contributes to a weighted final ranking score.
+The weighted scores are combined to produce the final ranking score.
 
 ---
 
 ## Technologies Used
 
 * Python
-* Pandas
-* NumPy
 * Sentence Transformers
+* NumPy
+* Pandas
 * Scikit-learn
 
 ---
 
 ## Runtime Optimization
 
-A semantic similarity module using **BAAI/bge-small-en-v1.5** was implemented.
+The project includes a semantic similarity module using **BAAI/bge-small-en-v1.5**.
 
-For full dataset execution (~100K candidates), semantic scoring was disabled in the final ranking pipeline to reduce runtime while maintaining efficient multi-factor candidate ranking.
+To optimize execution time for approximately 100,000 candidate profiles, semantic scoring is implemented but disabled during the final ranking process. This significantly reduces runtime while maintaining efficient multi-factor candidate ranking.
 
 ---
 
@@ -86,22 +92,23 @@ For full dataset execution (~100K candidates), semantic scoring was disabled in 
 
 The system automatically generates:
 
-* Ranked Top 100 Candidates
+* Top 100 Ranked Candidates
 * submission.csv
+* top5_candidates.csv
 
 ---
 
 ## How to Run
 
-Install dependencies
+Install dependencies:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
-Run
+Run the project:
 
-```
+```bash
 python src/main.py
 ```
 
@@ -109,5 +116,6 @@ python src/main.py
 
 ## Author
 
-Purva Bandgar
+**Purva Bandgar**
+
 India Runs AI Hackathon 2026
